@@ -1,3 +1,6 @@
+//Utilização do arduino para ligar e desligar bobinas
+//mesmo com a baixa corrente do arduino houve bons resultados
+
 void setup() {
   pinMode(8, OUTPUT);
   pinMode(12, OUTPUT);
