@@ -1,3 +1,6 @@
+//piscar luzes para ensinar a minha irma
+
+
 int verde=12;
 int amarelo=11;
 int vermelho=10;
