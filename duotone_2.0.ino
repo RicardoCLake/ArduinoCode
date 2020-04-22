@@ -1,4 +1,5 @@
-// Aplicação e tentativa de verificar o porque a função duo tone ão estava funcinando
+// Criação da função Duotone 2.0, que pretende tocar em dois buzzers ao mesmo tempo, porém sem ficar com um som vibrado
+//assim, a ideia era retirar a função delay
 //observe que há uma melhor aparencia do código, pois o autor ja era mais velho quando escreveu
 //mesmo assim não funcionou
 
