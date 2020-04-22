@@ -1,3 +1,5 @@
+// Da série "Luzes" que criei para aprender e ensinar funções basicas do arduino: 2 de 6
+
 
 int porta[]={13, 12, 11, 12, 13, 12, 11, 12, 13, 12, 11, 12, 13, 12, 11, 11, 11,};
 
