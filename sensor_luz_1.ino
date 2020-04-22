@@ -1,3 +1,5 @@
+//frequencia do buzzer varia com a intensidade da luz no sensor
+
 int luz=0;
 
 void setup() {
