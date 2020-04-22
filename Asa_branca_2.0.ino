@@ -1,4 +1,4 @@
-/*Toque da música Asa Branca com a função Duotone 2.0*/
+/*Toque da música Asa Branca com a função Duotone 2.0, que serviu para testar a função e perceber que ela não funciona*/
 
 
 //recomendo frequencias na 5 (Max 4) oitava
