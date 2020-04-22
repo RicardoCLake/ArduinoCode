@@ -1,3 +1,5 @@
+//mistura do leitor de palmas do manual do mundo com o meu próprio sensor de palma
+
 /**************************** DEFINIÇÕES ***************************************/
 
 // Os números associados a cada variável seguem o guia de conexões e representam as portas digitais usadas. 
