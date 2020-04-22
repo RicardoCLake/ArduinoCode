@@ -1,3 +1,5 @@
+//mistura de Mic2 com o duotone das musicas
+
 /**************************** DEFINIÇÕES ***************************************/
 
 // Os números associados a cada variável seguem o guia de conexões e representam as portas digitais usadas. 
