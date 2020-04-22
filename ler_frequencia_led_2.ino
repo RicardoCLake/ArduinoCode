@@ -1,3 +1,6 @@
+//apos ler a frenquencia do led resolvi ler a frenquencia em um pino digital com a funcção pulseIn
+//não lembro o que havia no pino A0
+
 void setup() {
   Serial.begin(9600);
   pinMode(11, INPUT);
