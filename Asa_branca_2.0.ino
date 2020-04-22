@@ -1,3 +1,6 @@
+/*Toque da música Asa Branca com a função Duotone 2.0*/
+
+
 //recomendo frequencias na 5 (Max 4) oitava
  int c=523;
  int f=698;
