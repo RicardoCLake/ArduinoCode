@@ -1,3 +1,4 @@
+//leitura do microfone para calibrar os próximos programas da série "mic"
 
 int som; //A0
 int mn = 428; //queda minima em A0
