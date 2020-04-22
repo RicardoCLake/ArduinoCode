@@ -1,3 +1,5 @@
+// tente simples da função tone
+
 
 int c=523;
  int f=698;
