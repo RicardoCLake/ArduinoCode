@@ -1,4 +1,4 @@
-/*leitura apenas da primeira voz de uma musica duotone
+/*leitura apenas da primeira voz de uma musica escrita em duotone
  (exemplo feito a partir de "je vous salut marie")*/
 
 //recomendo frequencias na 5 (Max 4) oitava 
