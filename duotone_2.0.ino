@@ -1,3 +1,7 @@
+// Aplicação e tentativa de verificar o porque a função duo tone ão estava funcinando
+//observe que há uma melhor aparencia do código, pois o autor ja era mais velho quando escreveu
+//mesmo assim não funcionou
+
 
 const int buz1=4;  //IMPORTANTE NAO MUDAR ESSAS PORTAS, POIS AS DEFINIÇÕES DO "PORTD" SAO FIXAS PARA ESSE NÚMEROS LÁ EMBAIXO
 const int buz2=7;
