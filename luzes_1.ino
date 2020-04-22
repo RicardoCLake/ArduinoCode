@@ -1,3 +1,4 @@
+// Da série "Luzes" que criei para aprender e ensinar funções basicas do arduino: 1 de 6
 
 void setup() {
   pinMode(13, OUTPUT);
