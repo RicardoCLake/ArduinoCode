@@ -1,3 +1,5 @@
+//aprendendo a ligar as portas digitais com numeros binários
+
 void setup() {
   // put your setup code here, to run once:
 pinMode(0, OUTPUT);
