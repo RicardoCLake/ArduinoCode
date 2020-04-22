@@ -1,3 +1,6 @@
+//aprendendo a usar a entrada serial do monitor
+// Da série "Luzes" que criei para aprender e ensinar funções e programação basicas do arduino: 4 de 6
+
 String nome[]={"eu", "voce"};
 char tmb[64];
 int t;
