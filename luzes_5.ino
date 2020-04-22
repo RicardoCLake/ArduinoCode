@@ -1,3 +1,6 @@
+
+// Da série "Luzes" que criei para aprender e ensinar funções e programação basicas do arduino: 5 de 6
+
 void duoluz(int a, int b, int t){
   for(int i=0; i<=t/80; i=i+1){
     digitalWrite(a, HIGH);
