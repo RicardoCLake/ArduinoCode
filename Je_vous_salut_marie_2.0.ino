@@ -123,7 +123,7 @@ void duotone2 (int f1, int f2, int d){
   long d0=now;
   
     while (micros()-d0 <= d*270000) {
-    if(micros() - inicialtime1 >= 1000000/(f1* 2) - (295 - f1*70/440)){  
+    if(micros() - inicialtime1 >= 1000000/(f1* 2) - (295 - f1*70/440)){  //a segunda parte da subtração é o fator de correção
       if(buz1state==LOW){
         buz1state=HIGH;
       }
