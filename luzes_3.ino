@@ -1,3 +1,5 @@
+// Da série "Luzes" que criei para aprender e ensinar funções basicas do arduino: 3 de 6
+
 int g=13;
 int y=12;
 int r=11;
