@@ -1,5 +1,6 @@
-//recomendo frequencias na 5 (Max 4) oitava
+//Função duotone, que toca em dois buzzers diferentes ao msm tempo para fazer uma harmonização
 
+//recomendo frequencias na 5 (Max 4) oitava
 int pt=4;
 int pd=7;
 
