@@ -1,6 +1,7 @@
+//simples leitura de uma porta serial
+
 void setup() {
   // put your setup code here, to run once:
-pinMode(2, OUTPUT);
 Serial.begin(9600);
 }
 
