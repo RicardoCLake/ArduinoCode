@@ -1,3 +1,6 @@
+// FUNÇÃO QUE DIGITA UM CORAÇÃO QUE PISCA NO LCD (ÉPOCA DE NAMORO)
+
+
 #include<LiquidCrystal.h>
 LiquidCrystal lcd(12,11,5,4,3,2);
 
