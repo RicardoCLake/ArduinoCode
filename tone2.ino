@@ -1,3 +1,7 @@
+//comparação do "mono duotone" com um novo "tone2" que eu criei sem daley
+//essa função tone 2 seria utlizada para criar o duotone2.0
+//então criei esse arquivo para comparar as duas formas de "tone" para tentar entender o porque do duotone2.0 estar desafinado
+
 const int buz1=4;
 
  int c=523;
