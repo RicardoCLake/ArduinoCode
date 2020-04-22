@@ -1,3 +1,5 @@
+//tentaticva de tocar a musica francesa com a função duotone 2.0, que nao funcionou
+
 //recomendo frequencias na 5 (Max 4) oitava 
  int c=523;
  int f=698;
