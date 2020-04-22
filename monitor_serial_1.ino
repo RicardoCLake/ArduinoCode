@@ -1,3 +1,7 @@
+//aprendendo a usar o monitor serial com a pliação da função "digitar_função" criada a principio para lcd
+// sim eu aprendi antes a usar lcd, e depois ó que descobri a existencia do mpnitor serial kkkk
+
+
 void digitar(String p){
     int i;
     for(i=0; i<=p.length();i++) {
