@@ -1,3 +1,5 @@
+//tentativa de escrever uma função duotone sem delay, chmada de doutone 2.0
+
 const int buz1=7;
 const int buz2=4;
 
