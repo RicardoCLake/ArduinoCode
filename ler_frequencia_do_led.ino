@@ -1,3 +1,5 @@
+//lê a frequencia de um piscar de led com um sensor de luz na entrada analógica do arduino 
+
 
 int let = 0;
 unsigned long time0 = 0;
