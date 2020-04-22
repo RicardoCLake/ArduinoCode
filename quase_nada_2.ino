@@ -1,3 +1,5 @@
+//tocar buzzer com frequencia definida em 12
+
 void setup() {
   pinMode(12,OUTPUT);
   
