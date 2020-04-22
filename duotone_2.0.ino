@@ -1,7 +1,7 @@
 // Criação da função Duotone 2.0, que pretende tocar em dois buzzers ao mesmo tempo, porém sem ficar com um som vibrado
 //assim, a ideia era retirar a função delay
 //observe que há uma melhor aparencia do código, pois o autor ja era mais velho quando escreveu
-//mesmo assim não funcionou
+//usei números binários para ligar e deligar as portas, (afim de agilizar o processo e ganhar precisao), porém mesmo assim não funcionou
 
 
 const int buz1=4;  //IMPORTANTE NAO MUDAR ESSAS PORTAS, POIS AS DEFINIÇÕES DO "PORTD" SAO FIXAS PARA ESSE NÚMEROS LÁ EMBAIXO
