@@ -1,3 +1,9 @@
+//script que achue na internet para tocar musica
+//porem ta estranho e nem a musica consegui importar para uma forma de tocar melhor 
+//achei muito ruim a forma escolhida para tocar
+//preferi as minhas musicas, mesmo que seja sem o duotone, mas sem tanto if como aqui
+
+
 char buz = 4;
 char* musica[] = {"La","Re","Fa","Sol","La","Re", "Fa", "Sol", "Mi", "Pausa", "Sol", "Do", "Fa", "Mi", "Sol", "Do", "Fa", "Mi", "Re", "Fim"}; //Game of Thrones
 int duracao[] = {700, 500, 300, 250, 250, 300, 200, 200, 700, 200, 500, 500, 200, 200, 200, 500, 200, 200, 500};
