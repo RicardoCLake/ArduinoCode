@@ -1,3 +1,5 @@
+//Funçõ que imita alguem digitar no lcd 
+
 #include<LiquidCrystal.h>
 LiquidCrystal lcd(12,11,5,4,3,2);
 
@@ -24,7 +26,7 @@ void proxima(){
 void setup(){
             digitar("Oi!");
             proxima();
-            digitar("Eu gosto de uma menina chamada maria, sabia?!");
+            digitar("Eu gosto de uma menina chamada Maria, sabia?");  // (época de namoro kkk)
             }
     
 void loop(){
