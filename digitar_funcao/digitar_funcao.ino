@@ -16,18 +16,20 @@ void digitar(String p){
                 delay(100);
         }
     delay(1000);
-    }
+}
 
 void proxima(){
-               lcd.clear();
-               delay(500);
-              }
+   lcd.clear();
+   delay(500);
+}
     
 void setup(){
-            digitar("Oi!");
-            proxima();
-            digitar("Eu sou um Display de Cristal Liquido"); 
-            }
+    digitar("Oi!");
+    proxima();
+    digitar("Eu sou um LCD,");
+    lcd.setCursor(0,1);
+    digitar("sabia?");
+}
     
 void loop(){
-           }     
+}     
