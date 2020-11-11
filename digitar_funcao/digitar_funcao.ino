@@ -24,6 +24,7 @@ void proxima(){
 }
     
 void setup(){
+    lcd.begin (16,2);
     digitar("Oi!");
     proxima();
     digitar("Eu sou um LCD,");
