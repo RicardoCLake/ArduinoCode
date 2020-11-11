@@ -1,6 +1,5 @@
 /*Toque Da música Asa Branca com a função Duotone em dois peltiers*/
 
-
 //recomendo frequencias na 5 (Max 4) oitava
  int c=523;
  int f=698;
@@ -13,7 +12,9 @@
  int G=1568;
  int A=1760;
  int X=0;
-// NOTA1, ACOMPONHAMENTO1, d1, NOTA2, ACOMPANHAMENTO2, d2...
+
+// NOTA1, ACOMPONHAMENTO1, d1,
+// NOTA2, ACOMPANHAMENTO2, d2...
 
 int ASABRANCA[]={
   C, c, 1,
@@ -89,9 +90,6 @@ void duotone(int a, int b, int d){
   delay(100);
 }
 
-
-
-     
 void setup() {
   pinMode(pd,OUTPUT);
   pinMode(pt,OUTPUT);
@@ -102,5 +100,4 @@ void setup() {
 }
 
 void loop(){
-    
 }
