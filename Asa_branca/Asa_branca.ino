@@ -1,4 +1,4 @@
-/*Toque Da música Asa Branca com a função Duotone em dois peltiers*/
+/*Toque Da música Asa Branca com a função Duotone em dois piezos*/
 
 //recomendo frequencias na 5 (Max 4) oitava
  int c=523;
