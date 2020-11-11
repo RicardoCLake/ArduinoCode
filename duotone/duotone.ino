@@ -1,6 +1,5 @@
 //Função duotone, que toca em dois buzzers diferentes ao msm tempo para fazer uma harmonização
 
-//recomendo frequencias na 5 (Max 4) oitava
 int pt=4;
 int pd=7;
 
@@ -15,11 +14,13 @@ void duotone(int a, int b, int d){
   }
 }
 
+//recomendo frequencias na 5 (Max 4) oitava
 int C=1047;
 int D=1175;
 int E=1319;
 int F=1397;
 int G=1568;
+
 void setup() {
   pinMode(pd,OUTPUT);
   pinMode(pt,OUTPUT);
