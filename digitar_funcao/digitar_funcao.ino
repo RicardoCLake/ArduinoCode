@@ -26,7 +26,7 @@ void proxima(){
 void setup(){
             digitar("Oi!");
             proxima();
-            digitar("Eu gosto de uma menina chamada Maria, sabia?");  // (época de namoro kkk)
+            digitar("Eu sou um Display de Cristal Liquido"); 
             }
     
 void loop(){
