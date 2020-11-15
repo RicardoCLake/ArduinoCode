@@ -1,23 +1,28 @@
 #include<LiquidCrystal.h>
 #include<string.h>
-LiquidCrystal lcd(12,11,5,4,3,2);
 
+long readUltrasonicMicros(int triggerPin, int echoPin);
 int lerEscolha();
+
+LiquidCrystal lcd(12,11,5,4,3,2);
 #define BOTAO1 6
 #define BOTAO2 7
 #define BOTAO3 8
 #define BOMBA 9
+#define ECHO A0
+#define TRIG A1
 
 float distancia = 15.0;
 bool timer = false;
 int duracao = 3000;
-String mensagem;
 bool continua = true;
 int escolha;
+String mensagem;
+float medida;
 
 void setup() {
   
-//Declaracoes iniciais
+//Configurações do sistema
   lcd.begin (16,2);
 
   pinMode(BOTAO1, INPUT_PULLUP);
@@ -69,12 +74,9 @@ void setup() {
   lcd.print("Higienize!");
 }
 
-
 void loop(){
   //Le as informacoes do sensor
-  long microsec = ultrasonic.timing();
-  float medida;
-  medida = ultrasonic.convert(microsec, Ultrasonic::CM);
+  medida = 0.01723 * readUltrasonicMicros(TRIG, ECHO);
 
   if (medida <= distancia) {
     digitalWrite(BOMBA, HIGH);
@@ -103,4 +105,21 @@ int lerEscolha(){
       return 3;
     }
   }
+}
+
+long readUltrasonicMicros(int triggerPin, int echoPin)
+{
+  // Clear the trigger
+  pinMode(triggerPin, OUTPUT);  
+  digitalWrite(triggerPin, LOW);
+  delayMicroseconds(2);
+  
+  // Sets the trigger pin to HIGH state for 10 microseconds
+  digitalWrite(triggerPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(triggerPin, LOW);
+  pinMode(echoPin, INPUT);
+  
+  // Reads the echo pin, and returns the sound wave travel time in microseconds
+  return pulseIn(echoPin, HIGH);
 }
