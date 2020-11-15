@@ -5,12 +5,12 @@ long readUltrasonicMicros(int triggerPin, int echoPin);
 int lerEscolha();
 
 LiquidCrystal lcd(12,11,5,4,3,2);
-#define BOTAO1 6
+#define BOTAO1 8
 #define BOTAO2 7
-#define BOTAO3 8
+#define BOTAO3 6
 #define BOMBA 9
-#define ECHO A0
-#define TRIG A1
+#define ECHO 14
+#define TRIG 15
 
 float distancia = 15.0;
 bool timer = false;
@@ -24,6 +24,7 @@ void setup() {
   
 //Configurações do sistema
   lcd.begin (16,2);
+  Serial.begin(9600);
 
   pinMode(BOTAO1, INPUT_PULLUP);
   pinMode(BOTAO2, INPUT_PULLUP);
@@ -77,6 +78,8 @@ void setup() {
 void loop(){
   //Le as informacoes do sensor
   medida = 0.01723 * readUltrasonicMicros(TRIG, ECHO);
+  Serial.print(distancia);
+  Serial.println(medida);
 
   if (medida <= distancia) {
     digitalWrite(BOMBA, HIGH);
