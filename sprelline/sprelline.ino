@@ -5,24 +5,22 @@ long readUltrasonicMicros(int triggerPin, int echoPin);
 int lerEscolha();
 
 LiquidCrystal lcd(12,11,5,4,3,2);
-#define BOTAO1 8
-#define BOTAO2 7
-#define BOTAO3 6
-#define BOMBA 9
+#define BOTAO1 10
+#define BOTAO2 9
+#define BOTAO3 8
+#define BOMBA 19
 #define ECHO 14
 #define TRIG 15
 
-float distancia = 15.0;
-bool timer = false;
+bool fixMode = false;
 int duracao = 3000;
 bool continua = true;
+float distanciaMinima = 15.0;
+float distanciaMedida;
 int escolha;
-String mensagem;
-float medida;
 
 void setup() {
-  
-//Configurações do sistema
+  //Configurações do sistema
   lcd.begin (16,2);
   Serial.begin(9600);
 
@@ -33,7 +31,7 @@ void setup() {
   pinMode(BOMBA, OUTPUT);
   digitalWrite(BOMBA, LOW);
 
-//Configuracoes do usuario
+  //Configuracoes do usuario
   while (continua) {
     lcd.clear();
     lcd.print("Selecione o Modo:");
@@ -41,11 +39,11 @@ void setup() {
     lcd.print("FIXO  MOVEL");
     escolha = lerEscolha();
     if (escolha == 1) { 
-    timer = true;
+    fixMode = true;
     continua = false;
     }
     if (escolha == 2) {
-    timer = false;
+    fixMode = false;
     continua = false;
     }
     if (escolha == 3) continua = true;   
@@ -56,13 +54,13 @@ void setup() {
   lcd.setCursor(0,1);
   lcd.print("7cm  15cm  25cm ");
   escolha = lerEscolha();
-  if (escolha == 1) distancia = 7.0;
-  if (escolha == 2) distancia = 15.0;
-  if (escolha == 3) distancia = 25.0;
+  if (escolha == 1) distanciaMinima = 7.0;
+  if (escolha == 2) distanciaMinima = 15.0;
+  if (escolha == 3) distanciaMinima = 25.0;
 
-  if (timer) {
+  if (fixMode) {
     lcd.clear();
-    lcd.print("Duração:"); 
+    lcd.print("Duracao:"); 
     lcd.setCursor(0,1);
     lcd.print("1seg  3seg  5seg");
     escolha = lerEscolha();
@@ -77,13 +75,12 @@ void setup() {
 
 void loop(){
   //Le as informacoes do sensor
-  medida = 0.01723 * readUltrasonicMicros(TRIG, ECHO);
-  Serial.print(distancia);
-  Serial.println(medida);
+  distanciaMedida = 0.01723 * readUltrasonicMicros(TRIG, ECHO);
+  Serial.println(distanciaMedida);
 
-  if (medida <= distancia) {
+  if (distanciaMedida <= distanciaMinima) {
     digitalWrite(BOMBA, HIGH);
-    if (timer) { 
+    if (fixMode) { 
       delay(duracao);
       digitalWrite(BOMBA, LOW);
     }
