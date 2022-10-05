@@ -42,12 +42,10 @@ void setup() {
   digitalWrite(led, LOW);
   digitalWrite(bts, HIGH);
 
-
 }
 
 void loop() {
   while (1) {
-
 
     if (!digitalRead(botao)) {
       pare = !pare;
@@ -58,8 +56,6 @@ void loop() {
     if (pare) {
       continue;
     }
-
-
 
     //Faz a leitura digital do microfone
     leituraSom = analogRead(A0);
