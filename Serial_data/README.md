@@ -66,7 +66,7 @@ void loop() {
 ## Preparação do computador
 
 Para realizar a comunicação serial no computador utilizando python,
-é necessário, em alguns casos, instalar a biblioteca PySerial. Seja 
+é necessário instalar a biblioteca PySerial. Seja 
 Windows, Linux ou MacOS, digite no prompt de comando:
 
 ```
@@ -110,7 +110,7 @@ ler o código para entender, pois está explicado melhor lá.
 
 O script está em anexo para baixar e usar. Ele está bem comentado e vale à pena ser lido para compreender melhor as minúcias do que ocorre. 
 
-Caso não saiba como rodar um script python, é simples: basta navegar no terminal até o 
+Caso não se saiba como rodar um script python, é simples (não precisa compilar). Basta navegar no terminal até o 
 diretório em que se encontra o arquivo e rodar o comando:
 
 ```
@@ -120,7 +120,7 @@ python3 ReceberDados.py
 ## Finalmentes
 
 O monitor Ricardo Chiquetto do Lago, autor desse material, fica
-à disposição. (Email: cdolago@usp.br)
+à disposição para ajudar. (Email: cdolago@usp.br)
 
 > **Observação**: tudo foi preparado e projetado em uma máquina
 Linux. Portanto, é importante notificar caso encontre falhas, principalmente em máquinas Windows e MacOS.
