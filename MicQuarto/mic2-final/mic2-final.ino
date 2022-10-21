@@ -1,4 +1,4 @@
-// Mic2 aplicado para a instalção no meu quarto 
+// Mic2 aplicado para a instalação no meu quarto 
 
 /**************************** DEFINIÇÕES ***************************************/
 

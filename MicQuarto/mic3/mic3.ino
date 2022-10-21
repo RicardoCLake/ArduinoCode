@@ -1,4 +1,6 @@
 //Nova versão do código para o arduido do meu quarto
+// Nessa versão foram inseridas opções mais complexas de comandos com palmas
+// e foi trocado o microfone simples para versão em módulo digital
 
 /**************************** DEFINIÇÕES ***************************************/
 
@@ -19,6 +21,7 @@
 bool pare = false;                //condição para congelar o sistema
 int posicaoFinal = 0;         //posicao no vetor de comandos
 int duracaoEcoPalma = 250;    //Valor representa um tempo em milissegundos, é o tempo que dura o som de uma palma, precisa ser calibrado entre 100 e 250.
+int duracaoEcoBotão = 250;    //Valor representa um tempo em milissegundos, é o tempo que dura o pulso de um botão.
 int intervaloCurto = 300;     //Em milissegundos, duração considerada curta entre duas palmas
 int intervaloLongo = 600;     //Em milissegundos, duração considerada longa duas palmas
 int comando[MAXIMO_COMANDO] = {0};       //Sequencia de comandos (palmas curtas e longas)
@@ -30,11 +33,10 @@ int delayfinal = 100;       //Valor representa um tempo em milissegundos, esse t
 
 /*************************** FUNÇÕES AUXILIARES *************************************/
 
-bool lerComando(int pino)
+bool lerComando(int pino, int dalayPino)
 {
-  delay(duracaoEcoPalma);
+  delay(delayPino);
   momentoPalma = millis();
-  
   while (millis() - momentoPalma <= intervaloLongo)
   {
     if (digitalRead(pino))
@@ -128,7 +130,7 @@ void loop()
 {
     if (digitalRead(mic))
     {
-      if (!lerComando(mic))
+      if (!lerComando(mic, duracaoEcoPalma))
       {
         *comando = {0};
         posicaoFinal = 0;
@@ -137,7 +139,7 @@ void loop()
       posicaoFinal = 0;
     }
 
-    if (!digitalRead(botao))
+    if (!digitalRead(botao, duracaoEcoBotao))
     {
       if (!lerComando(botao))
       {
