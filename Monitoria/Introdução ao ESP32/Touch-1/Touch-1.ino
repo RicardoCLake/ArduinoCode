@@ -24,7 +24,7 @@ void loop()
 
 //// Touch Test
 //
-//int touchPin = T3; //or "= T3"
+//int touchPin = 15; //or "= T3"
 //
 //void setup()
 //{

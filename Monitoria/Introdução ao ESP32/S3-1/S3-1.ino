@@ -12,7 +12,7 @@ void loop() {
   if (digitalRead(buttonPin))
   {
     digitalWrite(ledPin, HIGH);
-    // Removed:
+    // Removed to simplify:
     //delay(300); // Wait for 300 millisecond(s)
     //digitalWrite(ledPin, LOW);
     //delay(300); // Wait for 300 millisecond(s)

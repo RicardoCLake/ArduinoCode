@@ -1,27 +1,117 @@
-<h1 id="introdução-ao-esp-32">INTRODUÇÃO AO ESP 32</h1>
+<h1 id="guia-para-o-esp-32">GUIA PARA O ESP 32</h1>
+<p>Material de apoio preparado por <a href="https://edisciplinas.usp.br/user/profile.php?id=292217">Ricardo Chiquetto do Lago</a>, monitor da disciplina.</p>
 <h2 id="instalação">Instalação</h2>
 <ol type="1">
-<li>Colar esse link https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json em :</li>
-</ol>
-<p><code>Arquivo &gt;&gt; Preferências &gt;&gt; URL's adicionais para gerenciadores de placas</code></p>
-<p>Isso acrescenta um local para a IDE buscar as dependências da placa Esp32.</p>
-<ol start="2" type="1">
-<li><p>Vá em <code>"Ferramentas &gt;&gt; Placa &gt;&gt; Gerenciador de placas &gt;&gt; Esp32"</code> e clique em “Install”. Isso instala as dependências específicas para essa placa.</p></li>
-<li><p>Navegue até <code>"Ferramentas &gt;&gt; Placa &gt;&gt; Esp32 Arduino"</code> e selecione “ESP32 DEV Module”</p></li>
-<li><p>Navegue até <code>"Ferramentas &gt;&gt; Portas"</code> e selecione onde se encontrar a ESP32.</p></li>
+<li><p>Cole esse <strong>link</strong> https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json em: <code>Arquivo &gt;&gt; Preferências &gt;&gt; URL's adicionais para gerenciadores de placas</code></p>
+<p>Isso acrescenta um local para a IDE buscar as dependências da placa Esp32.</p></li>
+<li><p>Vá para: <code>Ferramentas &gt;&gt; Placa &gt;&gt; Gerenciador de placas &gt;&gt; Esp32</code> e clique em “Install”. Isso instala as dependências específicas para essa placa.</p></li>
+<li><p>Navegue até: <code>Ferramentas &gt;&gt; Placa &gt;&gt; Esp32 Arduino</code> e selecione “ESP32 DEV Module”.</p></li>
+<li><p>Navegue até: <code>Ferramentas &gt;&gt; Portas</code> e selecione a porta onde se estiver a ESP32 (normalmente é a opção que aparece).</p></li>
 </ol>
 <p>Pronto, agora já deve ser possível trabalhar com sua ESP32.</p>
 <blockquote>
-<p>Obs: às vezes, ao fazer upload dos códigos para a placa, além de clicar no botão “Carregar” da IDE, é necessário pressionar o botão Boot da própira placa. Isso ficará evidente se nas mensagens não sair de “Connecting…”</p>
+<p><strong>Importante:</strong> às vezes, ao fazer upload dos códigos para a placa, além de clicar no botão “Carregar” da IDE, é necessário pressionar o botão Boot da própria placa. Isso, deixará a placa disponível para receber novos códigos. Como saber se precisa apertar o botão? Ficará evidente se nas mensagensdo painel não sair de “Connecting…” ou até mesmo der algum erro.</p>
 </blockquote>
-<h2 id="pinos-da-placa">Pinos da Placa</h2>
-<ul>
-<li>Eis uma imagem com os pinos da placa:</li>
-</ul>
-<p><img src="./img/img1.png" alt="Portas da placa" /> Fonte: https://randomnerdtutorials.com/getting-started-with-esp32/</p>
-<ul>
-<li>Nesse link abaixo, há uam boa descrição das funções presentes nos pinos da placa. Somente desconsidere a imagem presente na página com as posições dos pinos, pois ela é de outra placa esp32, com 36 pinos, enquanto a nossa é de 30. O nomes dos pinos e suas respectivas funções são as mesmas, pelo menos.</li>
-</ul>
-<p>Link: https://randomnerdtutorials.com/esp32-pinout-reference-gpios/</p>
-<h2 id="boot">Boot</h2>
-<p><img src="./img/img2.png" alt="Portas no boot" /> Fonte: https://www.fernandok.com/2018/03/esp32-detalhes-internos-e-pinagem.html</p>
+<h2 id="pinos-da-placa-gpio">Pinos da Placa (GPIO)</h2>
+<h3 id="funções-do-pinos">Funções do pinos</h3>
+<p>O microcontrolador possui diversos pinos e é por meio deles que são realizadas suas ações. Eles podem ser programados pelo usuário para assumir diversos papeis, como ser pino de saída digital, entrada digital, saída analógica (DAC), entrada analógica (ADC), touch capacitivo, além de servir a vários protocolos de comunicações padronizados como serial tx-rx, UART, I2C, I2S, dentre outros.</p>
+<blockquote>
+<p><strong>Importante</strong>: em comparação com o Arduino UNO que usa tensões de 0V a 5V, a tecnologia do ESP32 utiliza tensões nos pinos que vão de 0V a 3,3V, ou seja é diferente! <em>Isso não deve ser nada amedrontador</em>, muitos sensores e circuitos estão preparados para essa diferença. Porém verifique a tecnologia dos sensores que pretende utilizar.</p>
+</blockquote>
+<p>É <strong>muito interessante</strong>, (sério, recomendo de coração) que você pesquise sobre quais são as funções disponíveis nos pinos, pois isso estimula a critividade e sugere ideias daquilo que pode ser feito com o microcontrolador. Caso se sinta confortável em ler um material em inglês, tenho uma ótima sugestão no link abaixo (juro que é sucinto).</p>
+<blockquote>
+<p><strong>Observação</strong>: Somente desconsidere a imagem presente na página com as posições dos pinos, pois ela é de outra placa esp32, com 36 pinos, enquanto a nossa é de 30. O nomes dos pinos e suas respectivas funções são as mesmas, pelo menos.</p>
+</blockquote>
+<p><a href="https://randomnerdtutorials.com/esp32-pinout-reference-gpios/">Link para sugestão de página com descrição das funções</a></p>
+<h3 id="pinagem-física">Pinagem física</h3>
+<p>O módulo ESP32-WRoom-32, quadrado metálico central que é produzido pela empresa chinesa <em>Expressif</em>, possui 38 pinos, incluindo aqueles de alimentação. Contudo, existem diferentes empresas que montam a placa do ESP32, e elas acabam fazendo isso de maneiras diferentes, mesmo que o coração delas (Esp32-WRoom-32) seja o mesmo. Por isso, há diversos formatos de esp32 no mercado e, mesmo que as funções dos pinos sejam as mesmas, é necessário verificar onde se encontram cada um desses pinos na placa.</p>
+<p>Por exemplo, existe uma versão de placa, comum no mecado, com 36 pinos. Assim,ela deixa disponível quase tudo do chip para o usuário acessar. Porém, alguns desses pinos não tem muitas possibilidades de uso, e, aliás, podem impedir o funcionamento correto da placa se alterados indevidademente (pois já possuem funções padrão que são essenciais ao ESP32). Por isso, um outro encapsulamento existente da placa possui 30 pinos apenas, que podemos chamar de mais “seguro”. Aliás, esse é o formato que os professores da disciplina decidiram utilizar, para uma experiência mais confortável dos alunos.</p>
+<p>A fim de auxiliar você na elaboração e execução do seu projeto, segue abaixo uma imagem com a legenda dos pinos. Vale ressaltar que em código deve-se sempre se referir ao pino pelo seu número de GPIO. Por exemplo, se quiser usar o “Touch9”, você irá fazer uma leitura do touch do pino 32.</p>
+<p>Seria possível chamá-lo de “T9”? Sim, até é possível usar esse apelido do pino, mas não é sempre que isso funciona, por isso, repito, chame-o pelo GPIO que é mais seguro.</p>
+<figure>
+<img src="https://edisciplinas.usp.br/draftfile.php/5120080/user/draft/210661970/img1%20%281%29.png" alt="Portas da placa" /><figcaption>Portas da placa</figcaption>
+</figure>
+<p>Fonte: <a href="https://randomnerdtutorials.com/getting-started-with-esp32/">https://randomnerdtutorials.com/getting-started-with-esp32/</a></p>
+<h3 id="durante-o-boot">Durante o Boot</h3>
+<p>Durante o Boot, ou seja, durante a inicialização da placa, diversos eventos internos ocorrem. Isso, às vezes, causa oscilações nas tensões dos pinos. Além disso, existem pinos que terminam o boot em HIGH (se não forem configurados pelo usuário), o que se diferencia do Arduino que tem por padrão deixar os pinos em LOW (se não me falha a memória).</p>
+<p>Por isso, recomenda-se consultar a imagem abaixo caso note algum mal funcionamento inesperado dos pinos, principalmente no que tange o início da execução do código. Na dúvida, trocar os pinos envolvidos no bug pode ser uma opção, se possível…</p>
+<figure>
+<img src="https://edisciplinas.usp.br/draftfile.php/5120080/user/draft/210661970/img2.png" alt="Portas no boot" /><figcaption>Portas no boot</figcaption>
+</figure>
+<p>Fonte: https://www.fernandok.com/2018/03/esp32-detalhes-internos-e-pinagem.html</p>
+<h2 id="em-código">Em código</h2>
+<p>Uma das formas de se programar para a ESP32 é utilizando a própria framework do Arduino. Às vezes ela pode não ser a mais otimizada, contudo, ela é muito prática e bem documentada, além de suprir boa parte das demandas. Por isso, essa será a estratégia adotada inicialmente.</p>
+<p>Ao invés de ficar explicando todos os códigos, serão apresentadas abaixo algumas versões adaptadas das aulas e que foram testadas em ESP32. Assim, espera-se que seja possível você verificar a semelhança com o que fora utilizado até então.</p>
+<p>Depois, serão comentados outros códigos simples, porém que são úteis para verificar as opções presentes na ESP32. (Essa parte ainda está mais em preparação).</p>
+<h3 id="s2">S2</h3>
+<p>Código adaptado da aula S2:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c++"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" title="1"><span class="co">//Blink Test</span></a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="co">// Led na GPIO_04 em série com resistor de 220</span></a>
+<a class="sourceLine" id="cb1-3" title="3"></a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="dt">int</span> ledPin = <span class="dv">4</span>;</a>
+<a class="sourceLine" id="cb1-5" title="5"></a>
+<a class="sourceLine" id="cb1-6" title="6"><span class="dt">void</span> setup()</a>
+<a class="sourceLine" id="cb1-7" title="7">{</a>
+<a class="sourceLine" id="cb1-8" title="8">  pinMode(ledPin, OUTPUT);</a>
+<a class="sourceLine" id="cb1-9" title="9">}</a>
+<a class="sourceLine" id="cb1-10" title="10"><span class="dt">void</span> loop()</a>
+<a class="sourceLine" id="cb1-11" title="11">{</a>
+<a class="sourceLine" id="cb1-12" title="12">  digitalWrite(ledPin, HIGH);</a>
+<a class="sourceLine" id="cb1-13" title="13">  delay(<span class="dv">1000</span>); <span class="co">// Wait for 1000 millisecond(s)</span></a>
+<a class="sourceLine" id="cb1-14" title="14">  digitalWrite(ledPin, LOW);</a>
+<a class="sourceLine" id="cb1-15" title="15">  delay(<span class="dv">1000</span>); <span class="co">// Wait for 1000 millisecond(s)</span></a>
+<a class="sourceLine" id="cb1-16" title="16">}</a></code></pre></div>
+<h3 id="s3">S3</h3>
+<p>Código adaptado da aula S3:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c++"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" title="1"><span class="co">// Button Test</span></a>
+<a class="sourceLine" id="cb2-2" title="2"></a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="dt">int</span> ledPin = <span class="dv">4</span>;</a>
+<a class="sourceLine" id="cb2-4" title="4"><span class="dt">int</span> buttonPin = <span class="dv">22</span>;</a>
+<a class="sourceLine" id="cb2-5" title="5"></a>
+<a class="sourceLine" id="cb2-6" title="6"><span class="dt">void</span> setup() </a>
+<a class="sourceLine" id="cb2-7" title="7">{</a>
+<a class="sourceLine" id="cb2-8" title="8">  pinMode(buttonPin, INPUT);</a>
+<a class="sourceLine" id="cb2-9" title="9">  pinMode(ledPin, OUTPUT);</a>
+<a class="sourceLine" id="cb2-10" title="10">}</a>
+<a class="sourceLine" id="cb2-11" title="11"></a>
+<a class="sourceLine" id="cb2-12" title="12"><span class="dt">void</span> loop() </a>
+<a class="sourceLine" id="cb2-13" title="13">{</a>
+<a class="sourceLine" id="cb2-14" title="14">  <span class="cf">if</span> (digitalRead(buttonPin))</a>
+<a class="sourceLine" id="cb2-15" title="15">  {</a>
+<a class="sourceLine" id="cb2-16" title="16">    digitalWrite(ledPin, HIGH);</a>
+<a class="sourceLine" id="cb2-17" title="17">    <span class="co">// Removed to simplify:</span></a>
+<a class="sourceLine" id="cb2-18" title="18">    <span class="co">//delay(300); // Wait for 300 millisecond(s)</span></a>
+<a class="sourceLine" id="cb2-19" title="19">    <span class="co">//digitalWrite(ledPin, LOW);</span></a>
+<a class="sourceLine" id="cb2-20" title="20">    <span class="co">//delay(300); // Wait for 300 millisecond(s)</span></a>
+<a class="sourceLine" id="cb2-21" title="21">  }</a>
+<a class="sourceLine" id="cb2-22" title="22">  <span class="cf">else</span></a>
+<a class="sourceLine" id="cb2-23" title="23">  {</a>
+<a class="sourceLine" id="cb2-24" title="24">    digitalWrite(ledPin, LOW);</a>
+<a class="sourceLine" id="cb2-25" title="25">  }</a>
+<a class="sourceLine" id="cb2-26" title="26">}</a></code></pre></div>
+<h3 id="touch">Touch</h3>
+<p>A fim de explorar a função interessante do ESP32, chamado de Touch (“Toque físico”), foi criado esse código. Simplesmente existe um fio no GPIO15 e o teste consiste em encostar o dedo nesse fio e observar a saída no monitor serial. Simples, não? E muito fascinante!</p>
+<blockquote>
+<p><strong>Observação</strong>: não é necessário avisar que encostar o dedo no fio que está ligado à GPIO para leitura de Touch não dá choque, né?</p>
+</blockquote>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c++"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" title="1"><span class="co">// Touch Test</span></a>
+<a class="sourceLine" id="cb3-2" title="2"></a>
+<a class="sourceLine" id="cb3-3" title="3"><span class="dt">int</span> touchPin = <span class="dv">15</span>; <span class="co">//or &quot;= T3&quot;</span></a>
+<a class="sourceLine" id="cb3-4" title="4"></a>
+<a class="sourceLine" id="cb3-5" title="5"><span class="dt">void</span> setup()</a>
+<a class="sourceLine" id="cb3-6" title="6">{</a>
+<a class="sourceLine" id="cb3-7" title="7">  Serial.begin(<span class="dv">115200</span>);</a>
+<a class="sourceLine" id="cb3-8" title="8">  Serial.println(<span class="st">&quot;Iniciando o teste...&quot;</span>);</a>
+<a class="sourceLine" id="cb3-9" title="9">}</a>
+<a class="sourceLine" id="cb3-10" title="10"><span class="dt">void</span> loop()</a>
+<a class="sourceLine" id="cb3-11" title="11">{</a>
+<a class="sourceLine" id="cb3-12" title="12">  Serial.println(touchRead(touchPin)); </a>
+<a class="sourceLine" id="cb3-13" title="13">  delay(<span class="dv">100</span>);</a>
+<a class="sourceLine" id="cb3-14" title="14">}</a></code></pre></div>
+<h3 id="wifi">Wifi</h3>
+<p>Essa parte ainda ficará sem tantas explicações pois é um mundo à parte que exige atenção especial. Porém, recomenda-se desde já olhar os código de exemplo que aparecem na IDE após as instalações das dependências do ESP32. Ficam em: <code>Arquivo &gt;&gt; Exemplos &gt;&gt; [Lá para baixo] Wifi</code>.</p>
+<p>Em especial, sugere-se fortemente olhar, nessa ordem, os exemplos: WiFiScan, WiFiAccessPoint, SimpleWiFiServer.</p>
+<h3 id="bluetooth">Bluetooth</h3>
+<p>Ídem o Wifi: sugere-se, por agora, pesquisar pelos exemplos na IDE, ou da internet mesmo. Qualquer coisa o monitor <a href="https://edisciplinas.usp.br/user/profile.php?id=292217">Ricardo</a> se coloca à disposição para tentar ajudar.</p>
+<h2 id="considerações-finais">Considerações finais</h2>
+<p>Tudo nessa página é somente um rascunho a ser aprimorado. Aceita-se sugestões, correções e apontamentos. Além disso, vale ressaltar que o que está aqui é apenas uma base e um norte para impulsionar aqueles que se interessarem por essa tecnologia. Qualquer coisa, o monitor <a href="https://edisciplinas.usp.br/user/profile.php?id=292217">Ricardo</a> se coloca à disposição para tentar ajudar.</p>
