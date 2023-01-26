@@ -9,12 +9,12 @@
 
 /**************************** DEFINIÇÕES ***************************************/
 // Os números associados a cada variável seguem o guia de conexões e representam as portas digitais usadas.
-#define bts 9        //receptor bluetooth
+#define bts 18        //receptor bluetooth
 #define releUm 2     //vazio
 #define releDois 4   //relê da iluminação
 #define releTres 6   //relê do som
 #define releQuatro 2 // vazio
-#define botao 12     //entrada digital
+#define botao 16     //entrada digital
 #define led 13       // saída visual (avisos)
 #define mic 14       //entrada do mic
 
