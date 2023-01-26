@@ -1,9 +1,9 @@
 //leitura do microfone para calibrar os próximos programas da série "mic"
 
 int som; //A0
-int mn = 428; //queda minima em A0
+int mn = 460; //queda minima em A0
 int time0;
-int espera = 150; //intervalo para digitar
+int espera = 100; //intervalo para digitar
 
 void setup() {
   Serial.begin(9600);

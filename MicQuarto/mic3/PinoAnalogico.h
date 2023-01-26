@@ -10,14 +10,14 @@ class PinoAnalogico : public Pino
 public:
   PinoAnalogico(int pino, double limiar, double alpha);
   bool ehPulso();
-  void atualizaMediaEmBaixa();
+  void atualizaMediaMovel();
   int getNumero();
 
 private:
   int pino;
   // Auxiliam na detecção de pulso
-  double mediaEmBaixa; //media movel das leituras em baixa
-  double limiar;  //porcetagem da médiaEmBaixa que define se ha um pulso (trash hold)
+  double media; //media movel das leituras 
+  double limiar;  //porcetagem da média que define se ha um pulso (trash hold de descida)
   double alpha;   //peso do novo valor na media movel
 };
 

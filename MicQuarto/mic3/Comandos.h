@@ -23,7 +23,7 @@ private:
   // Armazenamento do comando
   int posicaoFinal = 0;    //posicao no vetor de comandos
   int comando[MAXIMO_DE_PALMAS] = {0};       //Sequencia de comandos (palmas curtas e longas)
-  bool Comandos::lerComandoDeVerdade();
+  bool lerComandoDeVerdade();
 };
 
 #endif //COMANDOS_H

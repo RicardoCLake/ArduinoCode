@@ -20,17 +20,17 @@
 
 
 //Definicoes para o pino de leitura do mic
-#define LIMIAR_ANALOGICO 1.7 // em porcertagem da média móvel em baixa
-#define ALPHA 0.1
+#define LIMIAR_ANALOGICO 0.05 // em porcertagem da média móvel 
+#define ALPHA 0.9
 
 //Definições temporais das palmas
-const int duracaoEcoPalma = 250;    //Valor representa um tempo em milissegundos, é o tempo que dura o som de uma palma, precisa ser calibrado entre 100 e 250.
-const int duracaoEcoBotao = 250;    //Valor representa um tempo em milissegundos, é o tempo que dura o pulso de um botão.
-const int maximoIntervaloCurto = 300;     //Em milissegundos, duração considerada curta entre duas palmas
-const int maximoIntervaloLongo = 600;     //Em milissegundos, duração considerada longa entre duas palmas
+const int duracaoEcoPalma = 170;    //Valor representa um tempo em milissegundos, é o tempo que dura o som de uma palma, precisa ser calibrado entre 100 e 250.
+const int duracaoEcoBotao = 170;    //Valor representa um tempo em milissegundos, é o tempo que dura o pulso de um botão.
+const int maximoIntervaloCurto = 450;     //Em milissegundos, duração considerada curta entre duas palmas
+const int maximoIntervaloLongo = 900;     //Em milissegundos, duração considerada longa entre duas palmas
 
 //Definicao do loop
-const int delayfinal = 100;       //Valor representa um tempo em milissegundos, esse tempo é aguardado pelo programa para que se inicie novamente o loop.
+const int delayfinal = 30;       //Valor representa um tempo em milissegundos, esse tempo é aguardado pelo programa para que se inicie novamente o loop.
 
 /************************** VARIÁVEIS AUXILIARES *********************************/
 bool pare = false;                //condição para congelar o sistema
@@ -83,12 +83,14 @@ void setup()
   digitalWrite(releQuatro, LOW);
   digitalWrite(led, LOW);
   digitalWrite(bts, HIGH);
+
+  Serial.begin(9600);
 }
 
 void loop() 
 {
   // Atualizacoes
-  pinoMic->atualizaMediaEmBaixa();
+  pinoMic->atualizaMediaMovel();
   comandoDecimal = 0;
 
   // Se for detectado um pulso inicial no microfone
@@ -124,6 +126,7 @@ void loop()
   // Escolha do que realizar com o comando lido
   if (comandoDecimal != 0)
   {
+    Serial.println(comandoDecimal);
     // Congelamento
     if (comandoDecimal == 21210) 
     {
