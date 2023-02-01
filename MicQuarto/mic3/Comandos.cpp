@@ -15,7 +15,6 @@ Comandos::Comandos(Pino* pino, int delayEco, int maximoIntervaloCurto, int maxim
 bool Comandos::lerComando() 
 {
   posicaoFinal = 0;
-  Serial.println(7);//*************
   return lerComandoDeVerdade();
 }
 // Uma vez detectado o primeiro pulso, chama-se essa funcao recursiva
@@ -23,11 +22,13 @@ bool Comandos::lerComandoDeVerdade()
 {
   delay(delayEco);
   momentoPalma = millis();
-  Serial.println(momentoPalma); //*************
+  int interval = 0;
   while (millis() - momentoPalma <= maximoIntervaloLongo)
   {
     if (pino->ehPulso())
     {
+      interval = millis() - momentoPalma;
+      Serial.println("i " + String(interval));
       if (millis() - momentoPalma <= maximoIntervaloCurto)
       {
         comando[posicaoFinal] = 1;

@@ -20,13 +20,13 @@
 
 
 //Definicoes para o pino de leitura do mic
-#define LIMIAR_ANALOGICO 0.05 // em porcertagem da média móvel 
-#define ALPHA 0.9
+#define LIMIAR_ANALOGICO 0.02 // em porcertagem da média móvel 
+#define ALPHA 0.02
 
 //Definições temporais das palmas
 const int duracaoEcoPalma = 170;    //Valor representa um tempo em milissegundos, é o tempo que dura o som de uma palma, precisa ser calibrado entre 100 e 250.
 const int duracaoEcoBotao = 170;    //Valor representa um tempo em milissegundos, é o tempo que dura o pulso de um botão.
-const int maximoIntervaloCurto = 450;     //Em milissegundos, duração considerada curta entre duas palmas
+const int maximoIntervaloCurto = 350;     //Em milissegundos, duração considerada curta entre duas palmas
 const int maximoIntervaloLongo = 900;     //Em milissegundos, duração considerada longa entre duas palmas
 
 //Definicao do loop
@@ -44,22 +44,26 @@ Comandos* comandoBotao = new Comandos(pinoBotao, duracaoEcoBotao, maximoInterval
 void piscarComando(unsigned long nComando)
 {
   int palma;
+  digitalWrite(led, HIGH);
+  delay(duracaoEcoPalma);
+  digitalWrite(led, LOW);
+  delay(duracaoEcoPalma);
   while (nComando != 0)
   {
     palma = nComando % 10;
     if (palma == 1)
     {
       digitalWrite(led, HIGH);
-      delay(duracaoEcoPalma);
-      digitalWrite(led, LOW);
       delay(maximoIntervaloCurto);
+      digitalWrite(led, LOW);
+      delay(duracaoEcoPalma);
     }
     if (palma == 2)
     {
       digitalWrite(led, HIGH);
-      delay(duracaoEcoPalma);
-      digitalWrite(led, LOW);
       delay(maximoIntervaloLongo);
+      digitalWrite(led, LOW);
+      delay(duracaoEcoPalma);
     }
     nComando = nComando / 10;
   }
@@ -96,20 +100,24 @@ void loop()
   // Se for detectado um pulso inicial no microfone
   if (pinoMic->ehPulso())
   {
+    Serial.println("MicComand:");
     // Se conseguir ler o comando
     if (comandoMic->lerComando())
     {
       comandoDecimal = comandoMic->getComandoDecimal();
+      Serial.println("c " + String(comandoDecimal) + "\n");
     }
   }
 
   // Se for detectado um pulso inicial no botao
   if (pinoBotao->ehPulso())
   {
+    Serial.println("ButtonComand:");
     // Se conseguir ler o comando
     if (comandoBotao->lerComando())
     {
       comandoDecimal = comandoBotao->getComandoDecimal();
+      Serial.println("c " + String(comandoDecimal) + "\n");
     }
   }
 
@@ -126,7 +134,6 @@ void loop()
   // Escolha do que realizar com o comando lido
   if (comandoDecimal != 0)
   {
-    Serial.println(comandoDecimal);
     // Congelamento
     if (comandoDecimal == 21210) 
     {
@@ -136,14 +143,14 @@ void loop()
     // Iluminacao
     if (comandoDecimal == 210) //################
     {
-      digitalWrite(releDois, !digitalRead(releDois));      //O sinal de exclamação inverte a condição do relé, se estava ligado será desligado e vice versa.
+      digitalWrite(releDois, !digitalRead(releDois));  
     }
     
     // Som 
     if (comandoDecimal == 120) //################
     {
-      digitalWrite(releTres, !digitalRead(releTres));      //O sinal de exclamação inverte a condição do relé, se estava ligado será desligado e vice versa.
-      digitalWrite(bts, LOW);                              //"aperta" o botão do receptor bts (que esta em pull up)
+      digitalWrite(releTres, !digitalRead(releTres));      
+      digitalWrite(bts, LOW);                              //"aperta" o botão do receptor bts (que esta em pullup)
       delay(3000);
       digitalWrite(bts, HIGH);
     }
