@@ -70,3 +70,13 @@ unsigned long Comandos::getComandoDecimal()
   }
   return temporario;
 }
+
+int Comandos:: getMaximoDePalmas()
+{
+  return MAXIMO_DE_PALMAS;
+}
+  
+int* Comandos::getComandoVetor()
+{
+  return this->comando;
+}

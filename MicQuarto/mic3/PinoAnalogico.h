@@ -16,7 +16,8 @@ public:
 private:
   int pino;
   // Auxiliam na detecção de pulso
-  float media; //media movel das leituras 
+  float media; //media movel das leituras
+  float leituraAnterior; 
   double limiar;  //porcetagem da média que define se ha um pulso (trash hold de descida)
   double alpha;   //peso do novo valor na media movel
 };

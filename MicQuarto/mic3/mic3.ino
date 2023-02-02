@@ -11,16 +11,15 @@
 // Os números associados a cada variável seguem o guia de conexões e representam as portas digitais usadas.
 #define bts 18        //receptor bluetooth
 #define releUm 2     //vazio
-#define releDois 4   //relê da iluminação
-#define releTres 6   //relê do som
+#define releDois 6   //relê da iluminação
+#define releTres 4   //relê do som
 #define releQuatro 2 // vazio
 #define botao 16     //entrada digital
 #define led 13       // saída visual (avisos)
 #define mic 14       //entrada do mic
 
-
 //Definicoes para o pino de leitura do mic
-#define LIMIAR_ANALOGICO 0.02 // em porcertagem da média móvel 
+#define LIMIAR_ANALOGICO 0.019 // em porcertagem da média móvel 
 #define ALPHA 0.02
 
 //Definições temporais das palmas
@@ -35,38 +34,39 @@ const int delayfinal = 30;       //Valor representa um tempo em milissegundos, e
 /************************** VARIÁVEIS AUXILIARES *********************************/
 bool pare = false;                //condição para congelar o sistema
 unsigned long comandoDecimal = 0;         //Comando em formato de numero decimal
+int* comandoVetorial;
 PinoAnalogico* pinoMic = new PinoAnalogico(mic, LIMIAR_ANALOGICO, ALPHA);
 Comandos* comandoMic   = new Comandos(pinoMic, duracaoEcoPalma, maximoIntervaloCurto, maximoIntervaloLongo);
 PinoDigital* pinoBotao = new PinoDigital(botao, "pullup");
 Comandos* comandoBotao = new Comandos(pinoBotao, duracaoEcoBotao, maximoIntervaloCurto, maximoIntervaloLongo);
 
 /*************************** FUNÇÕES AUXILIARES *************************************/
-void piscarComando(unsigned long nComando)
+void piscarComando(unsigned long nComando, int* comando, int sizeOfComando)
 {
-  int palma;
-  digitalWrite(led, HIGH);
-  delay(duracaoEcoPalma);
-  digitalWrite(led, LOW);
-  delay(duracaoEcoPalma);
-  while (nComando != 0)
+  int palma = 7;
+  delay(400);
+  for(int i =0; i <= sizeOfComando && comando[i] != 0; i++)
   {
-    palma = nComando % 10;
+    palma = comando[i];
     if (palma == 1)
     {
       digitalWrite(led, HIGH);
       delay(maximoIntervaloCurto);
       digitalWrite(led, LOW);
-      delay(duracaoEcoPalma);
+      delay(550);
     }
     if (palma == 2)
     {
       digitalWrite(led, HIGH);
       delay(maximoIntervaloLongo);
       digitalWrite(led, LOW);
-      delay(duracaoEcoPalma);
+      delay(550);
     }
-    nComando = nComando / 10;
   }
+  //digitalWrite(led, HIGH);
+  //delay(maximoIntervaloLongo);
+  //digitalWrite(led, LOW);
+  //delay(duracaoEcoPalma);
 }
 
 /********************************************************************************/
@@ -105,6 +105,7 @@ void loop()
     if (comandoMic->lerComando())
     {
       comandoDecimal = comandoMic->getComandoDecimal();
+      comandoVetorial = comandoMic->getComandoVetor();
       Serial.println("c " + String(comandoDecimal) + "\n");
     }
   }
@@ -117,6 +118,7 @@ void loop()
     if (comandoBotao->lerComando())
     {
       comandoDecimal = comandoBotao->getComandoDecimal();
+      comandoVetorial = comandoBotao->getComandoVetor();
       Serial.println("c " + String(comandoDecimal) + "\n");
     }
   }
@@ -164,7 +166,7 @@ void loop()
     }
 
     // Pisca no led o comando executado para conferir
-    piscarComando(comandoDecimal);
+    piscarComando(comandoDecimal, comandoVetorial, comandoMic->getMaximoDePalmas());
     //delay(delayFinal);
     
   }
