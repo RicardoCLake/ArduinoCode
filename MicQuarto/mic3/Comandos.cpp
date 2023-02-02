@@ -71,7 +71,7 @@ unsigned long Comandos::getComandoDecimal()
   return temporario;
 }
 
-int Comandos:: getMaximoDePalmas()
+int static Comandos::getMaximoDePalmas()
 {
   return MAXIMO_DE_PALMAS;
 }

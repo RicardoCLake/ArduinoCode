@@ -11,7 +11,7 @@ public:
   ~Comandos();
   bool lerComando();
   unsigned long getComandoDecimal();
-  int getMaximoDePalmas();
+  static int getMaximoDePalmas();
   int* getComandoVetor();
   
 private:
