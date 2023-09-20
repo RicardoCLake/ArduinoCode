@@ -1,24 +1,23 @@
-//leitura do microfone para calibrar os próximos programas da série "mic"
+//leitura do botao para calibrar os próximos programas da série "mic"
 
-int som; //A0
-int mn = 460; //queda minima em A0
+int aperto;
 int time0;
 int espera = 100; //intervalo para digitar
 
 void setup() {
   Serial.begin(9600);
   pinMode(13,OUTPUT);
+  pinMode(16, INPUT_PULLUP);
 }
 
 void loop() {
-  som = analogRead(A0);
+  aperto = digitalRead(16);
   if(millis()-time0>espera){
     time0 = millis();
-   Serial.println (som);
+   Serial.println (aperto);
   }
-  if(som<mn){
+  if(!aperto){
     digitalWrite(13, !digitalRead (13));
-    
   }
     
 }

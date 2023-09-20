@@ -22,10 +22,13 @@ bool Comandos::lerComandoDeVerdade()
 {
   delay(delayEco);
   momentoPalma = millis();
+  int interval = 0;
   while (millis() - momentoPalma <= maximoIntervaloLongo)
   {
     if (pino->ehPulso())
     {
+      interval = millis() - momentoPalma;
+      Serial.println("i " + String(interval));
       if (millis() - momentoPalma <= maximoIntervaloCurto)
       {
         comando[posicaoFinal] = 1;
@@ -66,4 +69,14 @@ unsigned long Comandos::getComandoDecimal()
     decimal = decimal / 10;
   }
   return temporario;
+}
+
+int static Comandos::getMaximoDePalmas()
+{
+  return MAXIMO_DE_PALMAS;
+}
+  
+int* Comandos::getComandoVetor()
+{
+  return this->comando;
 }

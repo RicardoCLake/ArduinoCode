@@ -1,32 +1,36 @@
 #include "PinoAnalogico.h"
 
-// Contrutor
 PinoAnalogico::PinoAnalogico(int pino, double limiar, double alpha)
 {
   this->pino = pino;
   this->limiar = limiar; 
   this->alpha = alpha;
-  this->mediaEmBaixa = analogRead(pino);  
+  this->media = analogRead(pino);
+  this->leituraAnterior = analogRead(pino);
 }
 
 // Decide se no pino analógico há um pulso ou não
 bool PinoAnalogico::ehPulso()
 {
-  if (float(analogRead(this->pino)) >= mediaEmBaixa * limiar)
+  if (float(analogRead(this->pino)) <= media * (1 - limiar) &&
+      leituraAnterior <= media * (1 - limiar)) 
+  // (Essa segunda condiçao e para evitar grandes flutuaçoes da rede, por exemplo um chuveiro ligado)
   {
+    leituraAnterior = analogRead(pino);
     return true;
   }
-  else 
+  else
+    leituraAnterior = analogRead(pino); 
     return false;
 }
 
-// Atualiza a média movel em baixa tensao
-void PinoAnalogico::atualizaMediaEmBaixa()
+// Atualiza a média movel 
+float PinoAnalogico::atualizaMediaMovel()
 {
-  if (this->ehPulso() == false) 
-  {
-    mediaEmBaixa = mediaEmBaixa * (1-alpha) + analogRead(pino) * alpha;
-  }
+    leituraAnterior = analogRead(pino);
+    media = media * (1-alpha) + leituraAnterior * alpha;
+    return media;
+    
 }
 
 // Retorna o número do pino

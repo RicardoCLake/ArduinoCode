@@ -11,11 +11,11 @@ PinoDigital::PinoDigital(int pino, String modo)
 // Decide se no pino há um pulso ou não
 bool PinoDigital::ehPulso()
 {
-  if (modo = "pullup" and digitalRead(this->pino) == 0)
+  if (modo == "pullup" && digitalRead(this->pino) == 0)
   {
     return true;
   }
-  if (modo = "pulldown" and digitalRead(this->pino) == 1)
+  if (modo == "pulldown" && digitalRead(this->pino) == 1)
   {
     return true;
   }

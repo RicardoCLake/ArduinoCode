@@ -2,7 +2,7 @@
 #define COMANDOS_H
 
 #include "PinoAnalogico.h"
-#define MAXIMO_DE_PALMAS 7 //número máximo de palmas em um comando
+#define MAXIMO_DE_PALMAS 6 //número máximo de palmas em um comando
 
 class Comandos
 {
@@ -11,6 +11,8 @@ public:
   ~Comandos();
   bool lerComando();
   unsigned long getComandoDecimal();
+  static int getMaximoDePalmas();
+  int* getComandoVetor();
   
 private:
   // Variáveis do construtor
@@ -23,7 +25,7 @@ private:
   // Armazenamento do comando
   int posicaoFinal = 0;    //posicao no vetor de comandos
   int comando[MAXIMO_DE_PALMAS] = {0};       //Sequencia de comandos (palmas curtas e longas)
-  bool Comandos::lerComandoDeVerdade();
+  bool lerComandoDeVerdade();
 };
 
 #endif //COMANDOS_H
